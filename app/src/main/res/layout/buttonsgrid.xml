@@ -51,7 +51,7 @@
     </androidx.appcompat.widget.AppCompatButton>
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/factorial"
-        android:text= "!"
+        android:text= "shift"
         style="@style/buttonlayout1"
         android:layout_column="4"
         android:layout_columnWeight="1"
@@ -169,7 +169,7 @@
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/shift"
-            android:text= "shift"
+            android:text= "("
             style="@style/buttonlayout1"
             android:layout_column="4"
             android:layout_columnWeight="1"
@@ -209,7 +209,7 @@
         </androidx.appcompat.widget.AppCompatButton>
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/brace"
-            android:text= "()"
+            android:text= ")"
             style="@style/buttonlayout1"
             android:layout_column="4"
             android:layout_columnWeight="1"

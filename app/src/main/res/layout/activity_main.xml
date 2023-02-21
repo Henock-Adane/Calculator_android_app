@@ -22,7 +22,6 @@
         <EditText
             android:id="@+id/displayEt"
             style="@style/textviewelement"
-            android:hint="0"
             android:inputType="none"
             android:textSize="20pt"
             app:layout_constraintBottom_toTopOf="@+id/result"
@@ -47,7 +46,6 @@
         <EditText
             android:id="@+id/result"
             android:inputType="none"
-            android:hint="0"
             android:textSize="26pt"
             style="@style/textviewelement"
             app:layout_constraintBottom_toTopOf="@+id/buttonsgrid"

@@ -1,6 +1,7 @@
 package com.example.calculator;
 
 import static com.example.calculator.Calculator.operationMap;
+import static com.example.calculator.Calculator.singleOperationMap;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  *Main class
@@ -36,12 +38,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     /**
      * String variable for storing the current value on solution EditText
      */
-    String fullArgument;
+    String fullArgument = "";
 
     /**
-     * Calculator object for accessing the calculating operationdccccccv
+     * String for storing the displayed numbers
+     */
+    String displayedArgument = null;
+
+    /**
+     * Calculator object for accessing the calculating operations
      */
     Calculator calculator;
+
 
     /**
      * UI components of the app
@@ -149,45 +157,106 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View v) {
     Button button = (Button) v;
     String buttonText = button.getText().toString();
-    fullArgument = solutionet.getText().toString();
+   //if(!Objects.equals(fullArgument, String.valueOf(Math.E)))
+    displayedArgument = solutionet.getText().toString();
+    if(!displayedArgument.contains("e") && !displayedArgument.contains("π")){
+        fullArgument = displayedArgument;
+    }
+        //Toast.makeText(this, fullArgument + " ... " + displayedArgument, Toast.LENGTH_SHORT).show();
 
     if(buttonText.equals("AC")){
         solutionet.setText("");
-        resultet.setText("0");
+        resultet.setText("");
+        displayedArgument = fullArgument = null;
         return;
-    } else if(buttonText.equals("shift")){
+    }
+
+    else if(buttonText.equals("shift")){
         // change buttons layout here
     } else if(buttonText.equals("=")){
         updateResult();
-        if(!resultet.getText().equals("0")){
+
+        if(!resultet.getText().equals("0") && !fullArgument.contains("sin") &&
+                !fullArgument.contains("cos") && !fullArgument.contains("tan")
+                && !fullArgument.contains("log") && !fullArgument.contains("ln")){
             solutionet.setText(resultet.getText());
             scrollDown();
         }
         return;
-    } else if(buttonText.equals("C")){
+    }
+
+    else if(buttonText.equals("C")){
         updateResult();
         if(fullArgument.length()!= 0)
           fullArgument = fullArgument.substring(0, fullArgument.length()-1 );
         else
             return;
-    } else {
+    }
+
+    else if(buttonText.equals("sin") || buttonText.equals("cos") || buttonText.equals("tan") ||
+        buttonText.equals("ln") || buttonText.equals("log") || buttonText.equals("√x")){
+        fullArgument = fullArgument + buttonText + "(";
+        displayedArgument = displayedArgument + buttonText + "(";
+    }
+
+    else if(buttonText.equals("e") ){
+        if(Objects.equals(fullArgument, "")){
+            fullArgument = String.valueOf(Math.E);
+        } else{
+            fullArgument = String.valueOf(Double.parseDouble("0" + fullArgument) * Math.E);
+        }
+        displayedArgument = displayedArgument + "e";
+        solutionet.setText(displayedArgument);
+    }
+
+    else if(buttonText.equals("π")){
+        if(Objects.equals(fullArgument, "")){
+            fullArgument = String.valueOf(Math.PI);
+        } else{
+            fullArgument = String.valueOf(Double.parseDouble("0" + fullArgument) * Math.PI);
+        }
+
+        displayedArgument = displayedArgument + "π";
+        solutionet.setText(displayedArgument);
+    }
+
+    else if(buttonText.equals("%")){
+        fullArgument = fullArgument + "%0";
+        displayedArgument = displayedArgument + "%0";
+        updateResult();
+    }
+    else if(buttonText.equals("x√y")){
+        if(Objects.equals(fullArgument, "")){
+            fullArgument = "√";
+        } else{
+            fullArgument = fullArgument + "√";
+        }
+        displayedArgument = displayedArgument + "√";
+        solutionet.setText(displayedArgument);
+    }
+
+    else {
         //if there is an operation being selected for the second time
         //the result of the previous statement will be displayed
-        if(operationMap.containsKey(buttonText)){
+        if(operationMap.containsKey(buttonText) || singleOperationMap.containsKey(buttonText)){
             calculator.operation = buttonText;
             updateResult();
         }
+
         fullArgument = fullArgument + buttonText;
+        displayedArgument = displayedArgument + buttonText;
 
     }
 
-        /*if(fullArgument.length() >= 15){
-            scrollDown();
-            solutionet.setText(fullArgument);
-        } else
-            solutionet.setText(fullArgument);*/
         scrollDown();
-        solutionet.setText(fullArgument);
+        if(displayedArgument.contains("e") || displayedArgument.contains("π")){
+        solutionet.setText(displayedArgument);
+        } else{
+            solutionet.setText(fullArgument);
+        }
+
+
+        Toast.makeText(this, fullArgument+"", Toast.LENGTH_SHORT).show();
     }
 
     /**
@@ -219,7 +288,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
 
     }
-
     else if(fullArgument.split("/").length == 2){
 
         String number[] = fullArgument.split("/");
@@ -228,12 +296,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     "/");
             answer = Double.parseDouble(calculator.answerMe());
             resultet.setText(formatAnswer(answer));
-
         } catch (Exception e){
             Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
         }
     }
-
     else if(fullArgument.split("-").length == 2){
 
         String number[] = fullArgument.split("-");
@@ -246,7 +312,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
         }
     }
-
     else if(fullArgument.split("\\+").length == 2){
 
         String number[] = fullArgument.split("\\+");
@@ -259,7 +324,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
         }
     }
+    else if(fullArgument.split("\\(").length == 2){
 
+        String number[] = fullArgument.split("\\(");
+        if(Objects.equals(number[0], "sin") || Objects.equals(number[0], "cos") ||
+                Objects.equals(number[0], "tan") || Objects.equals(number[0], "log") ||
+                Objects.equals(number[0], "ln") || Objects.equals(number[0], "√x")){
+        try {
+            calculator = new Calculator((number[0]), Double.parseDouble(number[1]));
+            answer = Double.parseDouble(calculator.answerMe());
+            solutionet.setText(fullArgument + ")");
+            resultet.setText(formatAnswer(answer));
+        } catch (Exception e){
+            Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
+        }
+        }
+    }
+    else if(fullArgument.split("[%]").length == 2){
+        String number[] = fullArgument.split("[%]");
+        try {
+            calculator = new Calculator("%", Double.parseDouble(number[0]));
+            answer = Double.parseDouble(calculator.answerMe());
+            fullArgument = formatAnswer(answer);
+            resultet.setText(fullArgument);
+        } catch (Exception e){
+            Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
+        }
+    }
+    else if(fullArgument.split("\\^").length == 2){
+        String number[] = fullArgument.split("\\^");
+        try {
+            calculator = new Calculator(Double.parseDouble(number[0]), Double.parseDouble(number[1]),
+                    "^");
+            answer = Double.parseDouble(calculator.answerMe());
+            resultet.setText(formatAnswer(answer));
+        } catch (Exception e){
+            Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
+        }
+    }
+    else if(fullArgument.split("[√]").length == 2){
+        String number[] = fullArgument.split("[√]");
+        try {
+            calculator = new Calculator(Double.parseDouble(number[0]), Double.parseDouble(number[1]),
+                    "√");
+            answer = Double.parseDouble(calculator.answerMe());
+            resultet.setText(formatAnswer(answer));
+        } catch (Exception e){
+            Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     }
 
