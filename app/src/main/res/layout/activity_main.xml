@@ -22,7 +22,6 @@
         <EditText
             android:id="@+id/displayEt"
             style="@style/textviewelement"
-            android:inputType="none"
             android:textSize="20pt"
             app:layout_constraintBottom_toTopOf="@+id/result"
             app:layout_constraintEnd_toEndOf="parent"
