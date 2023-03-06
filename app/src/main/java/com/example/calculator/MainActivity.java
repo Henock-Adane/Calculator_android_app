@@ -340,11 +340,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * @return
      */
     public String formatAnswer(double answer){
-
-        if(answer == (long) answer)
-            return String.format(Locale.US,"%f", answer);
-        else
-            return String.format("%s", answer);
+        String ans = answer +"";
+        if(ans.lastIndexOf(".0")>0)
+            ans = ans.substring(0, ans.length()-2);
+        return ans;
     }
 
 
