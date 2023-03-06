@@ -4,8 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/drawable/buttonslayout.xml" value="0.22" />
-        <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/layout/buttonsgrid.xml" value="0.3333333333333333" />
+        <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/drawable/clear_button.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/layout/buttonsgrid.xml" value="0.16666666666666666" />
         <entry key="..\:/Users/Henock/Documents/hagaio/demos/calculator/app/src/main/res/layout/simple_cal_buttons.xml" value="0.1" />
       </map>
     </option>

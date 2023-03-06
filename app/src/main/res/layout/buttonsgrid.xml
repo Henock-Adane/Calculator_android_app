@@ -1,288 +1,297 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
     <GridLayout
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:rowCount="7"
         android:columnCount="5">
-    <androidx.appcompat.widget.AppCompatButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sin"
-        style="@style/buttonlayout1"
+        style="@style/buttonstyle"
         android:layout_columnWeight="1"
         android:text= "sin"
+        android:textSize="16sp"
         android:textAllCaps = "false"
-
         android:layout_column="0"
         android:layout_row="0">
 
-    </androidx.appcompat.widget.AppCompatButton>
-    <androidx.appcompat.widget.AppCompatButton
+    </com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/cos"
         android:text= "cos"
         android:textAllCaps = "false"
-        style="@style/buttonlayout1"
+        android:textSize="16sp"
+        style="@style/buttonstyle"
         android:layout_columnWeight="1"
         android:layout_column="1"
         android:layout_row="0">
 
-    </androidx.appcompat.widget.AppCompatButton>
-    <androidx.appcompat.widget.AppCompatButton
+    </com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/tan"
         android:text= "tan"
         android:textAllCaps = "false"
-        style="@style/buttonlayout1"
+        android:textSize="16sp"
+        style="@style/buttonstyle"
         android:layout_columnWeight="1"
         android:layout_column="2"
         android:layout_row="0">
 
-    </androidx.appcompat.widget.AppCompatButton>
-    <androidx.appcompat.widget.AppCompatButton
+    </com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/pi"
         android:text= "π"
-        style="@style/buttonlayout1"
+        style="@style/buttonstyle"
         android:layout_column="3"
         android:layout_columnWeight="1"
         android:layout_row="0">
 
-    </androidx.appcompat.widget.AppCompatButton>
-    <androidx.appcompat.widget.AppCompatButton
+    </com.google.android.material.button.MaterialButton>
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/factorial"
-        android:text= "shift"
-        style="@style/buttonlayout1"
+        android:text= "⇆"
+        style="@style/buttonstyle"
         android:layout_column="4"
         android:layout_columnWeight="1"
         android:layout_row="0">
-    </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+    </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/lan"
             android:text= "ln"
             android:textAllCaps = "false"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_row="1">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/log"
             android:text= "log"
             android:textAllCaps = "false"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_row="1">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/exponent"
             android:text= "e"
             android:textAllCaps = "false"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="1">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/power"
             android:text= "^"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="1">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/sqroot"
             android:text= "√x"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="4"
             android:layout_columnWeight="1"
             android:layout_row="1">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/xrooty"
-            android:text= "x√y"
-            style="@style/buttonlayout1"
-            android:layout_column="0"
-            android:layout_gravity="fill_horizontal"
+            style="@style/buttonstyle"
+            android:layout_row="2"
+            android:layout_column="3"
             android:layout_columnSpan="2"
             android:layout_columnWeight="1"
-            android:layout_row="2">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+            android:layout_gravity="fill_horizontal"
+            android:text="x√y"></com.google.android.material.button.MaterialButton>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/percent"
             android:text= "%"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="2">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/clear"
-            android:text= "C"
-            style="@style/buttonlayout1"
-            android:layout_column="3"
+            android:text= "⌫"
+            style="@style/buttonstyle"
+            android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_row="2">
-        </androidx.appcompat.widget.AppCompatButton>
+        </com.google.android.material.button.MaterialButton>
 
-        <androidx.appcompat.widget.AppCompatButton
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/clearall"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_row="2"
-            android:layout_column="4"
+            android:layout_column="1"
             android:layout_columnWeight="1"
-            android:text="AC"></androidx.appcompat.widget.AppCompatButton>
+            android:text="C">
 
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/seven"
             android:text= "7"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_row="3">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/eight"
             android:text= "8"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_row="3">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/nine"
             android:text= "9"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="3">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/divide"
             android:text= "/"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="3">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/shift"
-            android:text= "("
-            style="@style/buttonlayout1"
+            android:text= "x²"
+            style="@style/buttonstyle"
             android:layout_column="4"
             android:layout_columnWeight="1"
             android:layout_row="3">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/four"
             android:text= "4"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_row="4">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/five"
             android:text= "5"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_row="4">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/six"
             android:text= "6"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="4">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/multiply"
             android:text= "*"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="4">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/brace"
-            android:text= ")"
-            style="@style/buttonlayout1"
+            android:text= "()"
+            style="@style/buttonstyle"
             android:layout_column="4"
             android:layout_columnWeight="1"
             android:layout_row="4">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/one"
             android:text= "1"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_row="5">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/two"
             android:text= "2"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="1"
             android:layout_columnWeight="1"
             android:layout_row="5">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/three"
             android:text= "3"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="5">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/subtract"
             android:text= "-"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="5">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/equal"
             android:text= "="
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="4"
             android:layout_gravity="fill_vertical"
             android:layout_rowSpan="2"
             android:layout_columnWeight="1"
             android:layout_row="5">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/zero"
             android:text= "0"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="0"
             android:layout_gravity="fill_horizontal"
             android:layout_columnSpan="2"
             android:layout_columnWeight="1"
             android:layout_row="6">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/dot"
             android:text= "."
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="2"
             android:layout_columnWeight="1"
             android:layout_row="6">
-        </androidx.appcompat.widget.AppCompatButton>
-        <androidx.appcompat.widget.AppCompatButton
+        </com.google.android.material.button.MaterialButton>
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/addition"
             android:text= "+"
-            style="@style/buttonlayout1"
+            style="@style/buttonstyle"
             android:layout_column="3"
             android:layout_columnWeight="1"
             android:layout_row="6">
-        </androidx.appcompat.widget.AppCompatButton>
+        </com.google.android.material.button.MaterialButton>
 
 </GridLayout>
    <!-- <LinearLayout

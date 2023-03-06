@@ -11,7 +11,7 @@
 <!-- Buttons Type 2-->
 <color name="buttontype2">#272525</color>
 
-
+<color name="clearTask">#A31E43</color>
 
 <!--additionals-->
     <color name="purple_200">#FFBB86FC</color>
