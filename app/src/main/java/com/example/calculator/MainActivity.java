@@ -97,6 +97,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Stack<String> stack = new Stack<String>();
 
     /**
+     * A string variable for string the result of percentile calculation
+     */
+    String percentile;
+
+    /**
+     * A string to save a new string formed after the displayArgument variable is edited
+     */
+    String displayArgNew;
+
+    /**
      * the onCreate hook method
      * @param savedInstanceState
      */
@@ -249,8 +259,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             answer = infixElement.calculatePostFix(postFixString);
             resultet.setText(formatAnswer(answer));
         } catch (Exception e){
-            Toast.makeText(this, e + "", Toast.LENGTH_SHORT).show();
-
             Log.d(Tag, e + "");
         }
 
@@ -292,13 +300,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
             }
         }
-        else if(fullArgument.split("[%]").length == 2){
-            String number[] = fullArgument.split("[%]");
+        else if(fullArgument.split("[%]").length == 1){
+            String[] number = fullArgument.split("[%]");
             try {
                 calculator = new Calculator("%", Double.parseDouble(number[0]));
                 answer = Double.parseDouble(calculator.answerMe());
                 fullArgument = formatAnswer(answer);
+                percentile = fullArgument;
                 resultet.setText(fullArgument);
+
+
+
+
             } catch (Exception e){
                 Log.d(Tag, e+"");
             }
@@ -380,7 +393,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } else if (displayedArgument.equals("e")) {
                     //displaying e in number
                     resultet.setText(fullArgument);
-                } else {
+                } else if(fullArgument.contains("%")){
+                        String[] num = displayedArgument.split("%");
+                        updateResult(percentile + num[1]);
+                } else if(displayedArgument.contains("π")){
+                        displayArgNew = displayedArgument.replaceAll("π", String.valueOf(Math.PI));
+                        updateResult(displayArgNew);
+                } else if(displayedArgument.contains("e")){
+                        displayArgNew = displayedArgument.replaceAll("e", String.valueOf(Math.E));
+                        updateResult(displayArgNew);
+                }else {
                     updateResult(fullArgument);
                 }
                     scrollDown();
@@ -498,15 +520,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayedArgument = displayedArgument + "π";
                 solutionet.setText(displayedArgument);
                 replaceCursor();
-
                 break;
+
             case "%":
 
-                fullArgument = fullArgument + "%0";
-                displayedArgument = displayedArgument + "%0";
+                fullArgument = fullArgument + "%";
+                displayedArgument = displayedArgument + "%";
                 updateResultSingleArg(fullArgument);
-
                 break;
+
             case "x√y":
 
                 if (Objects.equals(fullArgument, "")) {
@@ -559,43 +581,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     Log.d(Tag, e+"");
                 }
 
-                /*try {
-                    if((Objects.equals(fullArgument, ""))){
-                        fullArgument = fullArgument + "(";
-                        stack.push("(");
-                    }
-                    else if(isDigit(fullArgument.charAt(fullArgument.length()-1)) && (
-                            (fullArgument.length() == 1 ) ||
-                                    !(fullArgument.charAt(fullArgument.length()-2) =='/' ||
-                                            fullArgument.charAt(fullArgument.length()-2) =='*' ||
-                                            fullArgument.charAt(fullArgument.length()-2) =='-' ||
-                                            fullArgument.charAt(fullArgument.length()-2) == '+' ))) {
-                        fullArgument = fullArgument + "*(";
-                        stack.push("(");
-                    }
-                    else if(fullArgument.charAt(fullArgument.length()-1) == '(' ||
-                                    fullArgument.charAt(fullArgument.length()-1) =='/' ||
-                                    fullArgument.charAt(fullArgument.length()-1) =='*' ||
-                                    fullArgument.charAt(fullArgument.length()-1) =='-' ||
-                                    fullArgument.charAt(fullArgument.length()-1) == '+' ) {
-                        fullArgument = fullArgument + "(";
-                        stack.push("(");
 
-                    }
-                    else if(!stack.isEmpty() &&
-                            (isDigit(fullArgument.charAt(fullArgument.length()-1)) ||
-                                    fullArgument.charAt(fullArgument.length()-1)==')') &&
-                            (fullArgument.charAt(fullArgument.length()-2) =='/' ||
-                                    fullArgument.charAt(fullArgument.length()-2) =='*' ||
-                                    fullArgument.charAt(fullArgument.length()-2) =='-' ||
-                                    fullArgument.charAt(fullArgument.length()-2) == '+' )){
-                        fullArgument = fullArgument + ")";
-                        stack.pop();
-                    }
-                } catch (Exception e){
-                    Log.d(Tag, e+"");
-                }
-                stack.empty();*/
                 break;
             default:
                 //if there is an operation being selected for the second time
@@ -623,8 +609,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         solutionet.setText("");
         replaceCursor();
         displayedArgument = fullArgument = "";
-        stack.empty();
+        stack.removeAllElements();
     }
+
+
+
 
     public void shiftButton(){
         // change buttons layout here
@@ -653,7 +642,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     public void checkArgument(){
-        if(displayedArgument.contains("e") || displayedArgument.contains("π")){
+        if(displayedArgument.contains("e") || displayedArgument.contains("π")
+         || displayedArgument.contains("%")){
             solutionet.setText(displayedArgument);
         }else{
             solutionet.setText(fullArgument);
