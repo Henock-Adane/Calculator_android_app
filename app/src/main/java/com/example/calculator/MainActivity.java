@@ -28,6 +28,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import java.text.DecimalFormat;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.Objects;
@@ -107,6 +108,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String displayArgNew;
 
     /**
+     * Arraylist for basic operations
+     */
+    ArrayList<String> opeArraylist = new ArrayList<String>();
+
+    /**
      * the onCreate hook method
      * @param savedInstanceState
      */
@@ -115,6 +121,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initializeUI();
+        initializeArraylists();
+
     }
 
 
@@ -194,6 +202,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    /**
+     * A method for initializing Arraylists
+     */
+    public void initializeArraylists(){
+        opeArraylist.add("+");
+        opeArraylist.add("-");
+        opeArraylist.add("*");
+        opeArraylist.add("/");
+    }
 
     /**
      * A method for setting the cursor to the end of every input
@@ -240,6 +257,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+
     /**
      * A method to automate scrolling in the solution edit text area
      */
@@ -247,6 +265,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         scroller.smoothScrollTo(0, solutionet.getBottom());
 
     }
+
 
     /**
      * A method for identifying arguments and perform the calculation
@@ -259,7 +278,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             answer = infixElement.calculatePostFix(postFixString);
             resultet.setText(formatAnswer(answer));
         } catch (Exception e){
-            Log.d(Tag, e + "");
+            Log.d(Tag, e + "1");
         }
 
 
@@ -270,6 +289,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
      * A method for handling trigonometric and single argument operations
      */
     public void updateResultSingleArg(String fullArgument){
+
         if(fullArgument.split("\\(").length == 2){
 
             String[] number = fullArgument.split("\\(");
@@ -296,11 +316,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     replaceCursor();
                     resultet.setText(formatAnswer(answer));
                 } catch (Exception e){
-                    Log.d(Tag, e+"");
+                    Log.d(Tag, e+"2");
                 }
             }
         }
-        else if(fullArgument.split("[%]").length == 1){
+        else if(fullArgument.split("[%]").length == 2){
             String[] number = fullArgument.split("[%]");
             try {
                 calculator = new Calculator("%", Double.parseDouble(number[0]));
@@ -313,22 +333,23 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
             } catch (Exception e){
-                Log.d(Tag, e+"");
+                Log.d(Tag, e+"3");
             }
         }
         else if(fullArgument.split("\\^").length == 2){
-            String number[] = fullArgument.split("\\^");
+            String[] number = fullArgument.split("\\^");
             try {
                 calculator = new Calculator(Double.parseDouble(number[0]), Double.parseDouble(number[1]),
                         "^");
                 answer = Double.parseDouble(calculator.answerMe());
                 resultet.setText(formatAnswer(answer));
             } catch (Exception e){
-                Log.d(Tag, e+"");
+                Toast.makeText(this, e+"", Toast.LENGTH_SHORT).show();
+                Log.d(Tag, e+"4");
             }
         }
-        else if(fullArgument.split("[√]").length >= 1){
-            String number[] = fullArgument.split("[√]");
+        else if(fullArgument.split("[√]").length == 2){
+            String[] number = fullArgument.split("[√]");
             try {
                 if(Objects.equals(number[0], "")){
                     calculator = new Calculator(2.0,Double.parseDouble(number[1]),
@@ -340,7 +361,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 answer = Double.parseDouble(calculator.answerMe());
                 resultet.setText(formatAnswer(answer));
             } catch (Exception e){
-                Log.d(Tag, e+"");
+                Log.d(Tag, e+"44");
             }
         }
     }
@@ -358,7 +379,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             ans = ans.substring(0, ans.length()-2);
         return ans;
     }
-
 
     /**
      * A method for checking a button and perform as per the passed button.
@@ -524,9 +544,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case "%":
 
-                fullArgument = fullArgument + "%";
+                fullArgument = fullArgument + "% ";
                 displayedArgument = displayedArgument + "%";
                 updateResultSingleArg(fullArgument);
+                //fullArgument = fullArgument + "%";
                 break;
 
             case "x√y":
@@ -546,7 +567,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     fullArgument= formatAnswer((Math.pow(Double.parseDouble(fullArgument), 2)));
                     replaceCursor();
                 }catch (Exception e){
-                    Log.d(Tag, e+"");
+                    Log.d(Tag, e+"5");
                 }
 
                 break;
@@ -578,7 +599,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                 } catch (Exception e){
-                    Log.d(Tag, e+"");
+                    Log.d(Tag, e+"6");
                 }
 
 
@@ -586,16 +607,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             default:
                 //if there is an operation being selected for the second time
                 //the result of the previous statement will be displayed
-                if (operationMap.containsKey(buttonText)) {
-                   // calculator.operation = buttonText;
-                   // updateResult(fullArgument);
+                if (operationMap.containsKey(buttonText) || opeArraylist.contains(buttonText)) {
+                    displayedArgument = displayedArgument + buttonText;
+                    fullArgument = fullArgument + buttonText;
+                    solutionet.setText(displayedArgument);
                 } else if (singleOperationMap.containsKey(buttonText) ||
                         trigOperationMap.containsKey(buttonText)) {
                     calculator.operation = buttonText;
                     updateResultSingleArg(fullArgument);
                 } else {
-                //fullArgument = fullArgument + buttonText;
-                //displayedArgument = displayedArgument + buttonText;
                 solutionet.getText().insert(solutionet.getSelectionStart(), buttonText);
                 itsNumber = true;
                 }
@@ -611,9 +631,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         displayedArgument = fullArgument = "";
         stack.removeAllElements();
     }
-
-
-
 
     public void shiftButton(){
         // change buttons layout here

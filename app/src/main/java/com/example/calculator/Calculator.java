@@ -40,10 +40,6 @@ public class Calculator {
         /**
          * filling the operationMap hashMap with keys and values
          */
-        operationMap.put("+",new Add());
-        operationMap.put("-", new Subtract());
-        operationMap.put("*", new Multiply());
-        operationMap.put("/", new Divide());
         operationMap.put("^", new power());
         operationMap.put("√", new xrooty());
 
