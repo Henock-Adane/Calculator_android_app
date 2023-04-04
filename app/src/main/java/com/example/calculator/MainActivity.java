@@ -566,6 +566,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     fullArgument= formatAnswer((Math.pow(Double.parseDouble(fullArgument), 2)));
                     replaceCursor();
+                    displayedArgument = fullArgument;
                 }catch (Exception e){
                     Log.d(Tag, e+"5");
                 }
@@ -648,7 +649,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void displayOnscreen(){
         if(!itsNumber) {
             checkArgument();
-
             if (buttonText.equals("⌫")) {
                 keepCursorAtposition(currentCursorPosition);
             } else {
